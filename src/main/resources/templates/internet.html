@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Table search on intenet</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+    <h1>Make search on internet FIXME</h1>
+    <table border="1">
+
+        <tr>
+
+            <th>Find query</th>
+            <th>Email</th>
+            <th>Related link</th>
+        </tr>
+        <tr>
+
+            <form method="POST" th:object="${thatobject}" >
+
+                <div th:if="${#fields.hasErrors()}">
+                    <span class="validationError">
+                        Форма не была отправлена, пожалуйста исправьте ошибки
+                    </span>
+                </div>
+                <td>
+                    <input type="text" th:field="*{nameObject}" id="name" placeholder="Название объекта"/>
+                    <span class="validationError" th:if="${#fields.hasErrors('nameObject')}"
+                        th:errors="*{nameObject}">Слишком короткое имя</span>
+                        
+                </td>
+                <td>
+                    <input type="text" th:field="*{adressObject}" id="adr" placeholder="Адрес"/>
+                    <span class="validationError" th:if="${#fields.hasErrors('adressObject')}"
+                        th:errors="*{adressObject}">Слишком коротко</span>
+                </td>
+                <td>
+                    <input type="text" th:field="*{commentAboutObject}" id="comment" placeholder="Комментарий"/>
+                    <input type="submit" value="добавить объект">
+                </td>
+
+            </form>
+        </tr>
+        <tr th:each="object: ${testobject}">
+
+            <td th:text="${object.nameObject}" />
+            <td th:text="${object.adressObject}" />
+            <td th:text="${object.commentAboutObject}" />
+        </tr>
+    </table>
+    <!-- <h1>Форма для добавления объектов.</h1>
+    <form method="POST" th:object="${thatobject}">
+        <label for="name">Название объекта</label>
+        <input type="text" th:field="*{nameObject}" id="name" placeholder="Название объекта">
+        <label for="adr">Адрес объекта</label>
+        <input type="text" th:field="*{adressObject}" id="adr" placeholder="Адрес">
+        <label for="comment">Комментарий</label>
+        <input type="text" th:field="*{commentAboutObject}" id="comment" placeholder="Комментарий">
+        <input type="submit" value="добавить объект">
+
+    </form>
+    <h1>Добавить методы для удаления объектов</h1>-->
+</body>
+
+</html>
