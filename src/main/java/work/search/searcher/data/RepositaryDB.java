@@ -2,8 +2,8 @@ package work.search.searcher.data;
 
 import org.springframework.data.repository.CrudRepository;
 
-//import SOME OBJ CLASS
+import work.search.searcher.EmailSubject;
 
-public interface RepositaryDB extends CrudRepository<String, String> { //FIXME - FIRST PARAM WILL BE PRIMARY KEY
+public interface RepositaryDB extends CrudRepository<EmailSubject, String> { 
     
 }

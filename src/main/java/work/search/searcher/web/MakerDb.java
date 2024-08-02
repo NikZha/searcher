@@ -24,15 +24,15 @@ import work.search.searcher.data.RepositaryDB;
 @RequestMapping("/internet")
 @SessionAttributes("internet")
 
-public class MakerInternet {
+public class MakerDb {
     @Autowired
     private RepositaryDB repdb;
 
-    public MakerInternet(RepositaryDB rep) {
+    public MakerDb(RepositaryDB rep) {
         this.repdb = rep;
     }
 
-    @ModelAttribute
+   @ModelAttribute
     private void addInternettoModel(Model model) {
          List<EmailSubject> emailSubjects = new ArrayList<>(); //HERE WILL
         // BE LOAD EMAIL DATA

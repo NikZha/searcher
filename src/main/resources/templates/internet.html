@@ -17,17 +17,17 @@
         </tr>
         <tr>
 
-            <form method="POST" th:object="${thatobject}" >
+            <form method="POST" th:object="${internet}" >
 
                 <div th:if="${#fields.hasErrors()}">
                     <span class="validationError">
-                        Форма не была отправлена, пожалуйста исправьте ошибки
+                        Form not be posted, check errors
                     </span>
                 </div>
                 <td>
-                    <input type="text" th:field="*{nameObject}" id="name" placeholder="Название объекта"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('nameObject')}"
-                        th:errors="*{nameObject}">Слишком короткое имя</span>
+                    <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
+                    <span class="validationError" th:if="${#fields.hasErrors('searchQuery')}"
+                        th:errors="*{searchQuery}"> Too short</span>
                         
                 </td>
                 <td>
@@ -42,25 +42,14 @@
 
             </form>
         </tr>
-        <tr th:each="object: ${testobject}">
+        <tr th:each="emails: ${emailsubjects}">
 
-            <td th:text="${object.nameObject}" />
-            <td th:text="${object.adressObject}" />
-            <td th:text="${object.commentAboutObject}" />
+            <td th:text="${emails.searchQuery}" />
+            <td th:text="${emails.findedEmail}" />
+            <td th:text="${emails.findedLink}" />
         </tr>
     </table>
-    <!-- <h1>Форма для добавления объектов.</h1>
-    <form method="POST" th:object="${thatobject}">
-        <label for="name">Название объекта</label>
-        <input type="text" th:field="*{nameObject}" id="name" placeholder="Название объекта">
-        <label for="adr">Адрес объекта</label>
-        <input type="text" th:field="*{adressObject}" id="adr" placeholder="Адрес">
-        <label for="comment">Комментарий</label>
-        <input type="text" th:field="*{commentAboutObject}" id="comment" placeholder="Комментарий">
-        <input type="submit" value="добавить объект">
-
-    </form>
-    <h1>Добавить методы для удаления объектов</h1>-->
+  
 </body>
 
 </html>
