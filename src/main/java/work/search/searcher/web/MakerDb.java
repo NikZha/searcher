@@ -21,8 +21,8 @@ import work.search.searcher.data.RepositaryDB;
 
 @Slf4j
 @Controller
-@RequestMapping("/internet")
-@SessionAttributes("internet")
+@RequestMapping("/db")
+@SessionAttributes("db")
 
 public class MakerDb {
     @Autowired
@@ -44,7 +44,12 @@ public class MakerDb {
 
     @GetMapping
     public String getInternet() {
-        return "internet";
+        return "db";
+    }
+
+    @ModelAttribute(name = "internetos")
+    public EmailSubject emailobj(){
+        return new EmailSubject();
     }
 
     @PostMapping
@@ -52,13 +57,13 @@ public class MakerDb {
             SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
             log.info("Errors: {}", errors.toString());
-            return "internet";
+            return "db";
         }
         // FIXME HEER MUST DO BUSSINES LOGIC
         repdb.save(emailSubject);
         log.info("Add query " + emailSubject);
         sessionStatus.setComplete();
-        return "internet";
+        return "db";
     }
 
 }

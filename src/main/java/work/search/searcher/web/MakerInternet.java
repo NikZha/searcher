@@ -31,6 +31,10 @@ public class MakerInternet {
     public MakerInternet(RepositaryDB rep) {
         this.repdb = rep;
     }
+    @ModelAttribute(name = "internetos")
+    public EmailSubject emailobj(){
+        return new EmailSubject();
+    }
 
     @ModelAttribute
     private void addInternettoModel(Model model) {
@@ -48,14 +52,14 @@ public class MakerInternet {
     }
 
     @PostMapping
-    public String postCoworker(@Valid @ModelAttribute("internet") EmailSubject emailSubject, Errors errors,
+    public String postCoworker(@Valid @ModelAttribute("emailsubjects") String emailSubject, Errors errors,
             SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
             log.info("Errors: {}", errors.toString());
             return "internet";
         }
         // FIXME HEER MUST DO BUSSINES LOGIC
-        repdb.save(emailSubject);
+       // repdb.save(emailSubject);
         log.info("Add query " + emailSubject);
         sessionStatus.setComplete();
         return "internet";

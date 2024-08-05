@@ -17,7 +17,7 @@
         </tr>
         <tr>
 
-            <form method="POST" th:object="${internet}" >
+            <form method="POST" th:object="${internetos}" >
 
                 <div th:if="${#fields.hasErrors()}">
                     <span class="validationError">
@@ -28,17 +28,17 @@
                     <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
                     <span class="validationError" th:if="${#fields.hasErrors('searchQuery')}"
                         th:errors="*{searchQuery}"> Too short</span>
-                        
+                        <input type="submit" value="Search!">
                 </td>
-                <td>
-                    <input type="text" th:field="*{adressObject}" id="adr" placeholder="Адрес"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('adressObject')}"
+                <!-- <td>
+                    <input type="text" th:field="*{findedEmail}" id="findedLink" placeholder="findedLink"/>
+                    <span class="validationError" th:if="${#fields.hasErrors('findedEmail')}"
                         th:errors="*{adressObject}">Слишком коротко</span>
                 </td>
                 <td>
-                    <input type="text" th:field="*{commentAboutObject}" id="comment" placeholder="Комментарий"/>
-                    <input type="submit" value="добавить объект">
-                </td>
+                    <input type="text" th:field="*{findedLink}" id="findedLink" placeholder="findedLink"/>
+                    <input type="submit" value="Search!">
+                </td>-->
 
             </form>
         </tr>
