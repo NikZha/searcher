@@ -25,7 +25,7 @@
                     </span>
                 </div>
                 <td>
-                    <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
+                    <input type="text"  id="query" placeholder="Query"/>
                     <span class="validationError" th:if="${#fields.hasErrors('searchQuery')}"
                         th:errors="*{searchQuery}"> Too short</span>
                         <input type="submit" value="Search!">
