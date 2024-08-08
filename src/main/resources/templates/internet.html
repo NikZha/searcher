@@ -10,7 +10,7 @@
     <table border="1">
 
         <tr>
-
+            <th>Date</th>
             <th>Find query</th>
             <th>Email</th>
             <th>Related link</th>
@@ -25,28 +25,20 @@
                     </span>
                 </div>
                 <td>
-                    <input type="text"  id="query" placeholder="Query"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('searchQuery')}"
-                        th:errors="*{searchQuery}"> Too short</span>
+                    <input type="text"  id="query" th:field="*{query}" placeholder="Query"/>
+                    <span class="validationError" th:if="${#fields.hasErrors('query')}"
+                        th:errors="*{query}"> Too short</span>
                         <input type="submit" value="Search!">
                 </td>
-                <!-- <td>
-                    <input type="text" th:field="*{findedEmail}" id="findedLink" placeholder="findedLink"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('findedEmail')}"
-                        th:errors="*{adressObject}">Слишком коротко</span>
-                </td>
-                <td>
-                    <input type="text" th:field="*{findedLink}" id="findedLink" placeholder="findedLink"/>
-                    <input type="submit" value="Search!">
-                </td>-->
+                
 
             </form>
         </tr>
         <tr th:each="emails: ${emailsubjects}">
-
-            <td th:text="${emails.searchQuery}" />
-            <td th:text="${emails.findedEmail}" />
-            <td th:text="${emails.findedLink}" />
+            <td th:text="${emails.dateQuery}" />
+            <td th:text="${emails.query}" />
+            <td th:text="${emails.email}" />
+            <td th:text="${emails.url}" />
         </tr>
     </table>
   

@@ -1,4 +1,4 @@
-package work.search.searcher;
+package work.search.searcher.businessLogic;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,10 +20,12 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Data
+@NoArgsConstructor
 public class SearchEngine {
     private static final String spamlist[] = { "google", "alibaba", "wikimedia", "wikipedia", "yastatic", "yabs",
             "w3.org",
@@ -86,7 +88,7 @@ public class SearchEngine {
                     .forEach(a -> arl.add(a.replace("&amp", "")));
             for (String element : arl) {
                 for (int i = 0; i < spamlist.length; i++) {
-                    if (element.indexOf(spamlist[i], 0) > 0) {
+                    if (element.contains(spamlist[i])) {
                         element = "deletethisspam";
                     }
                 }
@@ -101,11 +103,11 @@ public class SearchEngine {
         return arl;
     }
 
-    public static List<SearchEngine> builder(String searchinQery, String query)
+    public static List<SearchEngine> builder(String searchingQuery, String query)
             throws InterruptedException, ExecutionException {
         List<SearchEngine> listOfseachedEmail = new CopyOnWriteArrayList<SearchEngine>();
         var tasks = new ArrayList<Callable<Long>>();
-        ArrayList<String> urls = searchUrl(searchinQery);
+        ArrayList<String> urls = searchUrl(searchingQuery);
         for (var url : urls) {
             Callable<Long> task = () -> {
                 var objEmail = new SearchEngine(url, query);

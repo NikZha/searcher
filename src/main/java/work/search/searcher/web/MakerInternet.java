@@ -16,7 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import work.search.searcher.EmailSubject;
+import work.search.searcher.businessLogic.SearchEngine;
 import work.search.searcher.data.RepositaryDB;
 
 @Slf4j
@@ -32,16 +32,16 @@ public class MakerInternet {
         this.repdb = rep;
     }
     @ModelAttribute(name = "internetos")
-    public EmailSubject emailobj(){
-        return new EmailSubject();
+    public SearchEngine emailobj(){
+        return new SearchEngine();
     }
 
     @ModelAttribute
     private void addInternettoModel(Model model) {
-         List<EmailSubject> emailSubjects = new ArrayList<>(); //HERE WILL
+         List<SearchEngine> emailEngines = new ArrayList<>(); //HERE WILL
         // BE LOAD EMAIL DATA
-        repdb.findAll().forEach(i -> emailSubjects.add(i));
-         model.addAttribute("emailsubjects", emailSubjects);
+        //repdb.findAll().forEach(i -> emailEngines.add(i));
+         model.addAttribute("emailsubjects", emailEngines);
         log.info("model internet load" + model);
     }
     
@@ -52,15 +52,15 @@ public class MakerInternet {
     }
 
     @PostMapping
-    public String postCoworker(@Valid @ModelAttribute("emailsubjects") String emailSubject, Errors errors,
+    public String postCoworker(@Valid @ModelAttribute("internetos") SearchEngine emailEngine, Errors errors,
             SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
             log.info("Errors: {}", errors.toString());
             return "internet";
         }
         // FIXME HEER MUST DO BUSSINES LOGIC
-       // repdb.save(emailSubject);
-        log.info("Add query " + emailSubject);
+       // repdb.save(SearchEngine);
+        log.info("Add query test " + emailEngine.getQuery());
         sessionStatus.setComplete();
         return "internet";
     }
