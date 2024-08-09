@@ -16,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import work.search.searcher.businessLogic.MakerQuery;
 import work.search.searcher.businessLogic.SearchEngine;
 import work.search.searcher.data.RepositaryDB;
 
@@ -27,24 +28,25 @@ import work.search.searcher.data.RepositaryDB;
 public class MakerInternet {
     @Autowired
     private RepositaryDB repdb;
+    private List<SearchEngine> emailEngines = new ArrayList<>();
 
     public MakerInternet(RepositaryDB rep) {
         this.repdb = rep;
     }
+
     @ModelAttribute(name = "internetos")
-    public SearchEngine emailobj(){
+    public SearchEngine emailobj() {
         return new SearchEngine();
     }
 
     @ModelAttribute
     private void addInternettoModel(Model model) {
-         List<SearchEngine> emailEngines = new ArrayList<>(); //HERE WILL
+
         // BE LOAD EMAIL DATA
-        //repdb.findAll().forEach(i -> emailEngines.add(i));
-         model.addAttribute("emailsubjects", emailEngines);
+        // repdb.findAll().forEach(i -> emailEngines.add(i));
+        model.addAttribute("emailsubjects", emailEngines);
         log.info("model internet load" + model);
     }
-    
 
     @GetMapping
     public String getInternet() {
@@ -58,11 +60,17 @@ public class MakerInternet {
             log.info("Errors: {}", errors.toString());
             return "internet";
         }
-        // FIXME HEER MUST DO BUSSINES LOGIC
+        String query = emailEngine.getQuery();
+        MakerQuery makerQuery = new MakerQuery(query);
+        try{
+        emailEngines = SearchEngine.builder(makerQuery.getSearchingQuery(), query);
+    } catch(Exception e){
+            log.info(e.toString());
+        }
        // repdb.save(SearchEngine);
-        log.info("Add query test " + emailEngine.getQuery());
+        log.info("Add query test " + query);
         sessionStatus.setComplete();
-        return "internet";
+        return getInternet();
     }
 
 }
