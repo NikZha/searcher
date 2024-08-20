@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ import work.search.searcher.data.RepositaryDB;
 @Slf4j
 @Controller
 @RequestMapping("/internet")
-@SessionAttributes("internet")
+@SessionAttributes("SearchEngine")
 
 public class MakerInternet {
     @Autowired
@@ -70,7 +71,8 @@ public class MakerInternet {
        // repdb.save(SearchEngine);
         log.info("Add query test " + query);
         sessionStatus.setComplete();
-        return getInternet();
+        
+        return "redirect:/internet";
     }
 
 }
