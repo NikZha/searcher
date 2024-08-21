@@ -16,7 +16,7 @@
             <th>Related link</th>
         </tr>
         <tr>
-
+            <td></td>
             <form method="POST" th:object="${internetos}" >
 
                 <div th:if="${#fields.hasErrors()}">
@@ -26,6 +26,7 @@
                 </div>
                 <td>
                     <input type="text"  id="query" th:field="*{query}" placeholder="Query"/>
+                    <input type="file" id="url" th:field="*{url}" placeholder="Url"/>
                     <span class="validationError" th:if="${#fields.hasErrors('query')}"
                         th:errors="*{query}"> Too short</span>
                         <input type="submit" value="Search!">

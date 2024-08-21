@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
+import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,7 @@ import work.search.searcher.data.RepositaryDB;
 @Slf4j
 @Controller
 @RequestMapping("/internet")
-@SessionAttributes("SearchEngine")
+@SessionAttributes("internetos")
 
 public class MakerInternet {
     @Autowired
@@ -55,7 +54,7 @@ public class MakerInternet {
     }
 
     @PostMapping
-    public String postCoworker(@Valid @ModelAttribute("internetos") SearchEngine emailEngine, Errors errors,
+    public String postQuery(@Valid @ModelAttribute("internetos") SearchEngine emailEngine, Errors errors,
             SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
             log.info("Errors: {}", errors.toString());
@@ -63,13 +62,16 @@ public class MakerInternet {
         }
         String query = emailEngine.getQuery();
         MakerQuery makerQuery = new MakerQuery(query);
+        String searchUrl;
+        if(emailEngine.getUrl() == null)  searchUrl = makerQuery.getSearchingQuery();
+        else  searchUrl = "file:///~/Downloads/" + emailEngine.getUrl();
         try{
-        emailEngines = SearchEngine.builder(makerQuery.getSearchingQuery(), query);
+        emailEngines = SearchEngine.builder(searchUrl, query);
     } catch(Exception e){
             log.info(e.toString());
         }
        // repdb.save(SearchEngine);
-        log.info("Add query test " + query);
+        log.info("Add query and url " + query + searchUrl);
         sessionStatus.setComplete();
         
         return "redirect:/internet";
