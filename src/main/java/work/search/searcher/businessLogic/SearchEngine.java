@@ -126,14 +126,4 @@ public class SearchEngine {
         return listOfseachedEmail;
     }
 
-    public static void main(String[] args) {
-        try {
-            List<SearchEngine> objEngines = builder(gogl, "кламп");
-            for (var obj : objEngines) {
-                System.err.println(obj.getEmail() + "|" + obj.getQuery() + "|" + obj.dateQuery + "|" + obj.getUrl());
-            }
-        } catch (InterruptedException ex) {
-        } catch (ExecutionException ex) {
-        }
-    }
 }

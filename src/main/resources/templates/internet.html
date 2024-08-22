@@ -5,6 +5,7 @@
     <title>Table search on intenet</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
+
 <body>
     <h1>Make search on internet FIXME</h1>
     <table border="1">
@@ -17,7 +18,7 @@
         </tr>
         <tr>
             <td></td>
-            <form method="POST" th:object="${internetos}" >
+            <form method="POST" th:object="${internetos}">
 
                 <div th:if="${#fields.hasErrors()}">
                     <span class="validationError">
@@ -25,13 +26,12 @@
                     </span>
                 </div>
                 <td>
-                    <input type="text"  id="query" th:field="*{query}" placeholder="Query"/>
-                    <input type="file" id="url" th:field="*{url}" placeholder="Url"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('query')}"
-                        th:errors="*{query}"> Too short</span>
-                        <input type="submit" value="Search!">
+                    <input type="text" id="query" th:field="*{query}" placeholder="Query" />
+                    <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}"> Too
+                        short</span>
+                    <input type="submit" value="Search!">
                 </td>
-                
+
 
             </form>
         </tr>
@@ -42,7 +42,7 @@
             <td th:text="${emails.url}" />
         </tr>
     </table>
-  
+
 </body>
 
 </html>

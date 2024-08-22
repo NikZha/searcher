@@ -42,8 +42,6 @@ public class MakerInternet {
     @ModelAttribute
     private void addInternettoModel(Model model) {
 
-        // BE LOAD EMAIL DATA
-        // repdb.findAll().forEach(i -> emailEngines.add(i));
         model.addAttribute("emailsubjects", emailEngines);
         log.info("model internet load" + model);
     }
@@ -62,18 +60,14 @@ public class MakerInternet {
         }
         String query = emailEngine.getQuery();
         MakerQuery makerQuery = new MakerQuery(query);
-        String searchUrl;
-        if(emailEngine.getUrl() == null)  searchUrl = makerQuery.getSearchingQuery();
-        else  searchUrl = "file:///~/Downloads/" + emailEngine.getUrl();
-        try{
-        emailEngines = SearchEngine.builder(searchUrl, query);
-    } catch(Exception e){
+        String searchUrl = makerQuery.getSearchingQuery();
+        try {
+            emailEngines = SearchEngine.builder(searchUrl, query);
+        } catch (Exception e) {
             log.info(e.toString());
         }
-       // repdb.save(SearchEngine);
-        log.info("Add query and url " + query + searchUrl);
+        log.info("Add query  " + query);
         sessionStatus.setComplete();
-        
         return "redirect:/internet";
     }
 
