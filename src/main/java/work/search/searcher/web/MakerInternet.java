@@ -62,11 +62,20 @@ public class MakerInternet {
         MakerQuery makerQuery = new MakerQuery(query);
         String searchUrl = makerQuery.getSearchingQuery();
         try {
-            emailEngines = SearchEngine.builder(searchUrl, query);
+            String file = new String(emailEngine.getFile().getBytes());
+            if (!(file.equals(""))) {
+               
+                emailEngines = SearchEngine.builderForStr(SearchEngine.searchString(file), query);
+                log.info("Add query and file " + query + " " + file);
+            } else {
+                emailEngines = SearchEngine.builder(searchUrl, query);
+                log.info("Add query " + query);
+            }
+
         } catch (Exception e) {
             log.info(e.toString());
         }
-        log.info("Add query  " + query);
+
         sessionStatus.setComplete();
         return "redirect:/internet";
     }

@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +38,7 @@ public class SearchEngine {
     private String url;
     private String email;
     private LocalDate dateQuery;
+    private MultipartFile file;
     private String query;
     private final static String squareBrackets = "[]";
     private final static String ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0";
@@ -108,6 +110,50 @@ public class SearchEngine {
         List<SearchEngine> listOfseachedEmail = new CopyOnWriteArrayList<SearchEngine>();
         var tasks = new ArrayList<Callable<Long>>();
         ArrayList<String> urls = searchUrl(searchingQuery);
+        for (var url : urls) {
+            Callable<Long> task = () -> {
+                var objEmail = new SearchEngine(url, query);
+                if (objEmail.getEmail() != null) {
+                    listOfseachedEmail.add(objEmail);
+                }
+                return 1L;
+            };
+            tasks.add(task);
+        }
+        ExecutorService executor = Executors.newCachedThreadPool();
+        List<Future<Long>> results = executor.invokeAll(tasks);
+        for (Future<Long> result : results)
+            result.get();
+
+        return listOfseachedEmail;
+    }
+
+    public static ArrayList<String> searchString(String str) {
+        ArrayList<String> arl = new ArrayList<String>();
+            Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+            pattern.matcher(str)
+                    .results()
+                    .map(MatchResult::group)
+                    .forEach(a -> arl.add(a.replace("&amp", "")));
+            for (String element : arl) {
+                for (int i = 0; i < spamlist.length; i++) {
+                    if (element.contains(spamlist[i])) {
+                        element = "deletethisspam";
+                    }
+                }
+            }
+            arl.removeIf(a -> a.contains("deletethisspam"));
+        
+        Set<String> set = new HashSet<String>(arl);
+        arl.clear();
+        arl.addAll(set);
+        return arl;
+    }
+
+    public static List<SearchEngine> builderForStr(List<String> urls, String query)
+            throws InterruptedException, ExecutionException {
+        List<SearchEngine> listOfseachedEmail = new CopyOnWriteArrayList<SearchEngine>();
+        var tasks = new ArrayList<Callable<Long>>();
         for (var url : urls) {
             Callable<Long> task = () -> {
                 var objEmail = new SearchEngine(url, query);

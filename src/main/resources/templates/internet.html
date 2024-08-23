@@ -2,12 +2,35 @@
 <html>
 
 <head>
-    <title>Table search on intenet</title>
+    <title>Search on intenet and local file</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 
 <body>
-    <h1>Make search on internet FIXME</h1>
+    <h1>Search emails for query into google and local file.</h1>
+    <ul>
+        <li>For looking emails from google enter query and click "Search!".</li>
+        <li>For looking emails to other search engine save html-file with answer search engine to local filesystem, 
+            choose this file, enter query and click "Search!".
+        </li>
+    </ul>
+    <form method="POST" enctype="multipart/form-data" th:object="${internetos}">
+
+        <div th:if="${#fields.hasErrors()}">
+            <span class="validationError">
+                Form not be posted, check errors
+            </span>
+        </div>
+        <p>
+            <input type="text" id="query" th:field="*{query}" placeholder="Query" />
+            <input type="file" id="file" th:field="*{file}" placeholder="File" />
+            <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}"> Too
+                short</span>
+            <input type="submit" value="Search!">
+            </p>
+
+
+    </form>
     <table border="1">
 
         <tr>
@@ -17,23 +40,8 @@
             <th>Related link</th>
         </tr>
         <tr>
-            <td></td>
-            <form method="POST" th:object="${internetos}">
-
-                <div th:if="${#fields.hasErrors()}">
-                    <span class="validationError">
-                        Form not be posted, check errors
-                    </span>
-                </div>
-                <td>
-                    <input type="text" id="query" th:field="*{query}" placeholder="Query" />
-                    <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}"> Too
-                        short</span>
-                    <input type="submit" value="Search!">
-                </td>
-
-
-            </form>
+           
+            
         </tr>
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.dateQuery}" />
