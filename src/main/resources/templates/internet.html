@@ -14,6 +14,7 @@
             choose this file, enter query and click "Search!".
         </li>
     </ul>
+    <p>
     <form method="POST" enctype="multipart/form-data" th:object="${internetos}">
 
         <div th:if="${#fields.hasErrors()}">
@@ -31,6 +32,8 @@
 
 
     </form>
+</p>
+
     <table border="1">
 
         <tr>

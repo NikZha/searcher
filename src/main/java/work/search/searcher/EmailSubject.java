@@ -14,26 +14,18 @@ import lombok.NoArgsConstructor;
 @Data
 @Table("EMAILSUPPLIERS")
 @NoArgsConstructor
-public class EmailSubject implements Serializable, Persistable<String> {
+public class EmailSubject implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
     @Id
+    private Long id;
+
     @NotBlank(message = "Enter query")
     private String searchQuery;
 
     private String findedEmail;
 
     private String findedLink;
-
-    @Override
-    @Nullable
-    public String getId() {
-        return searchQuery;
-    }
-
-    @Override
-    public boolean isNew() {
-        return true;
-    }
+    
 
 }
