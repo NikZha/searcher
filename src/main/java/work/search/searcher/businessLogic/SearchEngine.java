@@ -18,11 +18,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import work.search.searcher.EmailSubject;
 
 @Slf4j
 @Data
@@ -37,6 +39,7 @@ public class SearchEngine {
     private static String regexpMail = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b";
     private String url;
     private String email;
+    private Boolean todb;
     private LocalDate dateQuery;
     private MultipartFile file;
     private String query;
@@ -171,5 +174,7 @@ public class SearchEngine {
 
         return listOfseachedEmail;
     }
+
+    
 
 }

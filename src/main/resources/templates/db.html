@@ -10,13 +10,15 @@
     <table border="1">
 
         <tr>
-
+            <th>Number</th>
+            <th>Date query</th>
             <th>Find query</th>
             <th>Email</th>
             <th>Related link</th>
         </tr>
         <tr>
-
+            <td></td>
+            <td></td>
             <form method="POST" th:object="${internetos}" >
 
                 <div th:if="${#fields.hasErrors()}">
@@ -43,7 +45,8 @@
             </form>
         </tr>
         <tr th:each="emails: ${emailsubjects}">
-
+            <td th:text="${emails.id}" />
+            <td th:text="${emails.dateQuery}" />
             <td th:text="${emails.searchQuery}" />
             <td th:text="${emails.findedEmail}" />
             <td th:text="${emails.findedLink}" />

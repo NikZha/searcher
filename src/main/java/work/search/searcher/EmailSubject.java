@@ -1,6 +1,7 @@
 package work.search.searcher;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Persistable;
@@ -19,6 +20,8 @@ public class EmailSubject implements Serializable {
     
     @Id
     private Long id;
+
+    private LocalDate dateQuery;
 
     @NotBlank(message = "Enter query")
     private String searchQuery;

@@ -25,6 +25,9 @@
         <p>
             <input type="text" id="query" th:field="*{query}" placeholder="Query" />
             <input type="file" id="file" th:field="*{file}" placeholder="File" />
+            <input type="checkbox" id="todb" th:field="*{todb}" placeholder="todb" name="todb" />
+            <label for="todb">Check this if you need add rearch result to db.</label>
+  
             <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}"> Too
                 short</span>
             <input type="submit" value="Search!">

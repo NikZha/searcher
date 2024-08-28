@@ -16,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import work.search.searcher.EmailSubject;
 import work.search.searcher.businessLogic.MakerQuery;
 import work.search.searcher.businessLogic.SearchEngine;
 import work.search.searcher.data.RepositaryDB;
@@ -67,17 +68,34 @@ public class MakerInternet {
                
                 emailEngines = SearchEngine.builderForStr(SearchEngine.searchString(file), query);
                 log.info("Add query and file " + query + " " + file);
-            } else {
+            } else if(file.equals("") && !emailEngine.getTodb()) {
                 emailEngines = SearchEngine.builder(searchUrl, query);
                 log.info("Add query " + query);
+            }else if(emailEngine.getTodb()){
+                log.info("Pressed addtoBD");
+                var em = adapList();
+                repdb.saveAll(em);
             }
 
         } catch (Exception e) {
             log.info(e.toString());
         }
 
-        sessionStatus.setComplete();
+       sessionStatus.setComplete();
         return "redirect:/internet";
+    }
+
+    private List<EmailSubject> adapList(){
+        List<EmailSubject> filtred = new ArrayList<EmailSubject>();
+        for(int i=0;i<emailEngines.size();i++){
+            EmailSubject tmpobj = new EmailSubject();
+            tmpobj.setDateQuery(emailEngines.get(i).getDateQuery());
+            tmpobj.setSearchQuery(emailEngines.get(i).getQuery());
+            tmpobj.setFindedEmail(emailEngines.get(i).getEmail());
+            tmpobj.setFindedLink(emailEngines.get(i).getUrl());
+            filtred.add(tmpobj);
+        }
+        return filtred;
     }
 
 }
