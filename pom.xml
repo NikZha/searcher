@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>work.search</groupId>
 	<artifactId>searcher</artifactId>
-	<version>0.3.1-SNAPSHOT</version>
+	<version>0.5.2-SNAPSHOT</version>
 	<name>searcher</name>
-	<description>Searcher some email</description>
+	<description>Searcher email for query</description>
 	<url/>
 	<licenses>
 		<license/>

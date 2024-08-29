@@ -25,6 +25,7 @@ import work.search.searcher.data.RepositaryDB;
 @SessionAttributes("db")
 
 public class MakerDb {
+    private List<EmailSubject> emailSubjects = new ArrayList<>(); 
     @Autowired
     private RepositaryDB repdb;
 
@@ -34,9 +35,6 @@ public class MakerDb {
 
    @ModelAttribute
     private void addInternettoModel(Model model) {
-         List<EmailSubject> emailSubjects = new ArrayList<>(); //HERE WILL
-        // BE LOAD EMAIL DATA
-        repdb.findAll().forEach(i -> emailSubjects.add(i));
          model.addAttribute("emailsubjects", emailSubjects);
         log.info("model internet load" + model);
     }
@@ -59,11 +57,18 @@ public class MakerDb {
             log.info("Errors: {}", errors.toString());
             return "db";
         }
-        // FIXME HEER MUST DO BUSSINES LOGIC
-        repdb.save(emailSubject);
+        List<EmailSubject> tmpRS = new ArrayList<>();
+        String searchedEmail = emailSubject.getFindedEmail();
+        String searchedQuery = emailSubject.getSearchQuery(); 
+        repdb.findAll().forEach(i -> tmpRS.add(i));
+        for (int i = 0; i < tmpRS.size(); i++) {
+            if(tmpRS.get(i).getSearchQuery().contains(searchedQuery)){
+                emailSubjects.add(tmpRS.get(i));
+            }
+        }
         log.info("Add query " + emailSubject);
         sessionStatus.setComplete();
-        return "db";
+        return "redirect:/db";
     }
 
 }

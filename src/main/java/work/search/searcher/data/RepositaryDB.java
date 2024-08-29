@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import work.search.searcher.EmailSubject;
 
-public interface RepositaryDB extends CrudRepository<EmailSubject, String> { 
+public interface RepositaryDB extends CrudRepository<EmailSubject, Long> { 
     
 }
