@@ -17,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import work.search.searcher.EmailSubject;
+import work.search.searcher.businessLogic.FilterList;
 import work.search.searcher.businessLogic.MakerQuery;
 import work.search.searcher.businessLogic.SearchEngine;
 import work.search.searcher.data.RepositaryDB;
@@ -87,12 +88,14 @@ public class MakerInternet {
 
     private List<EmailSubject> adapList(){
         List<EmailSubject> filtred = new ArrayList<EmailSubject>();
-        for(int i=0;i<emailEngines.size();i++){
+        var lstEmailEng = FilterList.filterList(emailEngines);
+        
+        for(int i=0;i<lstEmailEng.size();i++){
             EmailSubject tmpobj = new EmailSubject();
-            tmpobj.setDateQuery(emailEngines.get(i).getDateQuery());
-            tmpobj.setSearchQuery(emailEngines.get(i).getQuery());
-            tmpobj.setFindedEmail(emailEngines.get(i).getEmail());
-            tmpobj.setFindedLink(emailEngines.get(i).getUrl());
+            tmpobj.setDateQuery(lstEmailEng.get(i).getDateQuery());
+            tmpobj.setSearchQuery(lstEmailEng.get(i).getQuery());
+            tmpobj.setFindedEmail(lstEmailEng.get(i).getEmail());
+            tmpobj.setFindedLink(lstEmailEng.get(i).getUrl());
             filtred.add(tmpobj);
         }
         return filtred;

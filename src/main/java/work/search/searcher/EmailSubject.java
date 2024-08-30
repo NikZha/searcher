@@ -22,8 +22,7 @@ public class EmailSubject implements Serializable {
     private Long id;
 
     private LocalDate dateQuery;
-
-    @NotBlank(message = "Enter query")
+    
     private String searchQuery;
 
     private String findedEmail;

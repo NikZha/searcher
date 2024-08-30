@@ -62,11 +62,11 @@ public class MakerDb {
         String searchedQuery = emailSubject.getSearchQuery(); 
         repdb.findAll().forEach(i -> tmpRS.add(i));
         for (int i = 0; i < tmpRS.size(); i++) {
-            if(tmpRS.get(i).getSearchQuery().contains(searchedQuery)){
+            if(tmpRS.get(i).getFindedEmail().contains(searchedEmail) && tmpRS.get(i).getSearchQuery().contains(searchedQuery)){
                 emailSubjects.add(tmpRS.get(i));
             }
         }
-        log.info("Add query " + emailSubject);
+        log.info("Add query " + searchedEmail + " " + searchedQuery);
         sessionStatus.setComplete();
         return "redirect:/db";
     }

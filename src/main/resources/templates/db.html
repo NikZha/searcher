@@ -21,21 +21,14 @@
             <td></td>
             <form method="POST" th:object="${internetos}" >
 
-                <div th:if="${#fields.hasErrors()}">
-                    <span class="validationError">
-                        Form not be posted, check errors
-                    </span>
-                </div>
                 <td>
                     <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('searchQuery')}"
-                        th:errors="*{searchQuery}"> Too short</span>
+                  
                         
                 </td>
                   <td>
-                    <input type="text" th:field="*{findedEmail}" id="findedLink" placeholder="findedLink"/>
-                    <span class="validationError" th:if="${#fields.hasErrors('findedEmail')}"
-                        th:errors="*{adressObject}">Слишком коротко</span>
+                    <input type="text" th:field="*{findedEmail}" id="findedEmail" placeholder="findedEmail"/>
+                    
                 </td>
                 <td>
                     
