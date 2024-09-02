@@ -45,7 +45,7 @@ public class MakerDb {
         return "db";
     }
 
-    @ModelAttribute(name = "internetos")
+    @ModelAttribute(name = "dbs")
     public EmailSubject emailobj(){
         return new EmailSubject();
     }

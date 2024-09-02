@@ -1,3 +1,33 @@
 span.validationError {
 	color: red;
 }
+body{
+	background-color: #f5f3f0;
+}
+
+table {
+	margin-left: 20px;
+	margin-right: 20px;
+	border: thin solid black;
+	caption-side: bottom;
+	border-collapse: collapse;
+}
+
+td,
+th {
+	border: thin dotted gray;
+	padding: 5px;
+}
+
+caption {
+	font-style: italic;
+	padding-top: 8px;
+}
+
+th {
+	background-color: #d4d3d1;
+}
+
+td {
+	background-color: #f1ede8;
+}

@@ -21,10 +21,11 @@ import java.util.regex.Pattern;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import work.search.searcher.EmailSubject;
 
 @Slf4j
 @Data
@@ -42,6 +43,8 @@ public class SearchEngine {
     private Boolean todb;
     private LocalDate dateQuery;
     private MultipartFile file;
+    @NotBlank
+    @Size(min=1, message="May not blank")
     private String query;
     private final static String squareBrackets = "[]";
     private final static String ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0";

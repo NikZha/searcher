@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Search emails</title>
-    </head>
-    <body>
-        <h3>Make search on:</h3>
-        <a th:href="@{/internet}" id="internet">Search into internet on query</a></br>
-        <a th:href="@{/db}" id="db">Early geted mails in db</a></br>
-        <a th:href="@{/findinlocal}">Search links in local file</a>        
-    </body>
+
+<head>
+    <title>Searcher emails</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+
+<body>
+    <h1>You may search on:</h1>
+    <ul>
+        <li> <a th:href="@{/internet}" id="internet">Search into internet on query</a></br></li>
+        <li> <a th:href="@{/db}" id="db">Early was geted mails in db</a></br></li>
+    </ul>
+</body>
+
 </html>

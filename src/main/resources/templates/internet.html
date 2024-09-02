@@ -3,14 +3,16 @@
 
 <head>
     <title>Search on intenet and local file</title>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 
 <body>
+    <p>See also: search on <a th:href="@{/db}" id="db">db.</a></p>
     <h1>Search emails for query into google and/or local file.</h1>
     <ul>
         <li>For looking emails from google enter query and click "Search!".</li>
-        <li>For looking emails to other search engine save html-file with answer search engine to local filesystem, 
+        <li>For looking emails to other search engine save html file with answer search engine to local filesystem,
             choose this file, enter query and click "Search!".
         </li>
     </ul>
@@ -24,20 +26,19 @@
         </div>
         <p>
             <input type="text" id="query" th:field="*{query}" placeholder="Query" />
+            <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}">Too
+                short</span>
             <input type="file" id="file" th:field="*{file}" placeholder="File" />
             <input type="checkbox" id="todb" th:field="*{todb}" placeholder="todb" name="todb" />
             <label for="todb">Check this if you need add rearch result to db.</label>
-  
-            <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}"> Too
-                short</span>
             <input type="submit" value="Search!">
-            </p>
+        </p>
 
 
     </form>
-</p>
+    </p>
 
-    <table border="1">
+    <table>
 
         <tr>
             <th>Date</th>
@@ -46,8 +47,8 @@
             <th>Related link</th>
         </tr>
         <tr>
-           
-            
+
+
         </tr>
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.dateQuery}" />

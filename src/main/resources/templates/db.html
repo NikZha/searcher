@@ -2,40 +2,32 @@
 <html>
 
 <head>
+    <p>See also: search on <a th:href="@{/internet}" id="internet">internet.</a></p>
     <title>Table search on DB</title>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
-    <h1>Make search on DB FIXME</h1>
-    <table border="1">
+    <h1>Search on DB </h1>
+    <p>
+    <form method="POST" th:object="${dbs}" >
+            <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
+            <input type="text" th:field="*{findedEmail}" id="findedEmail" placeholder="findedEmail"/>
+            <input type="submit" value="Search!">
+        
+    </form></p>
+    <table>
 
         <tr>
             <th>Number</th>
             <th>Date query</th>
-            <th>Find query</th>
-            <th>Email</th>
-            <th>Related link</th>
+            <th>Query for search</th>
+            <th>Finded Email</th>
+            <th>Searched link</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <form method="POST" th:object="${internetos}" >
-
-                <td>
-                    <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
-                  
-                        
-                </td>
-                  <td>
-                    <input type="text" th:field="*{findedEmail}" id="findedEmail" placeholder="findedEmail"/>
-                    
-                </td>
-                <td>
-                    
-                    <input type="submit" value="Search!">
-                </td>
-
-            </form>
+            
+            
         </tr>
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.id}" />
