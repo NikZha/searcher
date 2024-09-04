@@ -1,5 +1,5 @@
 create table
-    if not exists emailsuppliers (
+    if not exists emailsubject (
         id bigint auto_increment,
         date_query date,
         search_query varchar(100) not null,
@@ -7,4 +7,4 @@ create table
         finded_link varchar(1500) not null
     );
 
-alter table emailsuppliers add primary key(id);
+alter table emailsubject add primary key(id);

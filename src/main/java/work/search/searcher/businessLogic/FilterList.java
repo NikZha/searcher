@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FilterList {
     private static final String[] spamArray = new String[] { "main-vanilla@desktop", ".js", ".svg", "jpg", "icon",
-            ".ts", "asxvmprobertest@gmail.com", "webpm", "robert@broofa.com" };
+            ".ts", "asxvmprobertest@gmail.com", "webpm", "robert@broofa.com", "webp" };
 
     public static List<SearchEngine> filterList(List<SearchEngine> lst) {
         List<SearchEngine> tmp = new ArrayList<>();
