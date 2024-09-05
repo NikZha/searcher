@@ -5,6 +5,7 @@
     <title>Search on intenet and local file</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{/style.css}" />
+    <script type="text/javascript" th:src="@{/autoloadform.js}"></script>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
         </li>
     </ul>
     <p>
-    <form method="POST" enctype="multipart/form-data" th:object="${internetos}">
+    <form method="POST" enctype="multipart/form-data" th:object="${internetos}" name="searchIntoInternet">
 
         <div th:if="${#fields.hasErrors()}">
             <span class="validationError">
@@ -25,7 +26,7 @@
             </span>
         </div>
         <p>
-            <input type="text" id="query" th:field="*{query}" placeholder="Query" />
+            <input type="text" id="query" th:field="*{query}" placeholder="Query"  />
             <span class="validationError" th:if="${#fields.hasErrors('query')}" th:errors="*{query}">Too
                 short</span>
             <input type="file" id="file" th:field="*{file}" placeholder="File" />
@@ -52,9 +53,9 @@
         </tr>
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.dateQuery}" />
-            <td th:text="${emails.query}" />
-            <td th:text="${emails.email}" />
-            <td th:text="${emails.url}" />
+            <td th:text="${emails.query}" id="findedQuery"/>
+            <td th:text="${emails.email}" id="email"/>
+            <td th:text="${emails.url}" id="url"/>
         </tr>
     </table>
 
