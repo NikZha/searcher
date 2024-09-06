@@ -6,6 +6,8 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{/style.css}" />
     <script type="text/javascript" th:src="@{/autoloadform.js}"></script>
+    <script type="text/javascript" th:src="@{/autourl.js}"></script>
+
 </head>
 
 <body>
@@ -39,7 +41,7 @@
     </form>
     </p>
 
-    <table>
+    <table id="inet">
 
         <tr>
             <th>Date</th>
@@ -55,7 +57,7 @@
             <td th:text="${emails.dateQuery}" />
             <td th:text="${emails.query}" id="findedQuery"/>
             <td th:text="${emails.email}" id="email"/>
-            <td th:text="${emails.url}" id="url"/>
+            <td th:text="${emails.url}" id="url" onclick="autourl(this)"/>
         </tr>
     </table>
 

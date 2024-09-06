@@ -35,7 +35,6 @@ public class SearchEngine {
             "w3.org",
             "wikipedia", "yandex", "gstatic", "schema.org", "www.youtube.com", "www.blogger.com", "avito", "pulscen",
             "jpg" };
-    private static String gogl = "https://www.google.com/search?q=кламп";
     private static final String patternString = "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)";
     private static String regexpMail = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b";
     private String url;
@@ -176,8 +175,6 @@ public class SearchEngine {
             result.get();
 
         return listOfseachedEmail;
-    }
-
-    
+    }   
 
 }
