@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/style.css}" />
     <script type="text/javascript" th:src="@{/autoloadform.js}"></script>
     <script type="text/javascript" th:src="@{/autourl.js}"></script>
-
+    <script type="text/javascript" th:src="@{/autoemail.js}"></script>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.dateQuery}" />
             <td th:text="${emails.query}" id="findedQuery"/>
-            <td th:text="${emails.email}" id="email"/>
+            <td th:text="${emails.email}" id="email"onclick="autoemail(this)"/>
             <td th:text="${emails.url}" id="url" onclick="autourl(this)"/>
         </tr>
     </table>
