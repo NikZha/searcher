@@ -6,16 +6,20 @@
     <title>Table search on DB</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{/style.css}" />
+    <script type="text/javascript" th:src="@{/autourl.js}"></script>
+    <script type="text/javascript" th:src="@{/autoemail.js}"></script>
 </head>
+
 <body>
     <h1>Search on DB </h1>
     <p>
-    <form method="POST" th:object="${dbs}" >
-            <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query"/>
-            <input type="text" th:field="*{findedEmail}" id="findedEmail" placeholder="findedEmail"/>
-            <input type="submit" value="Search!">
+    <form method="POST" th:object="${dbs}">
+        <input type="text" th:field="*{searchQuery}" id="query" placeholder="Query" />
+        <input type="text" th:field="*{findedEmail}" id="findedEmail" placeholder="findedEmail" />
+        <input type="submit" value="Search!">
         
-    </form></p>
+    </form>
+    </p>
     <table>
 
         <tr>
@@ -26,18 +30,18 @@
             <th>Searched link</th>
         </tr>
         <tr>
-            
-            
+
+
         </tr>
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.id}" />
             <td th:text="${emails.dateQuery}" />
             <td th:text="${emails.searchQuery}" />
-            <td th:text="${emails.findedEmail}" />
-            <td th:text="${emails.findedLink}" />
+            <td th:text="${emails.findedEmail}" id="email" onmouseover="autoemail(this)" />
+            <td th:text="${emails.findedLink}" id="url" onmouseover="autourl(this)" />
         </tr>
     </table>
-   
+
 </body>
 
 </html>

@@ -56,8 +56,8 @@
         <tr th:each="emails: ${emailsubjects}">
             <td th:text="${emails.dateQuery}" />
             <td th:text="${emails.query}" id="findedQuery"/>
-            <td th:text="${emails.email}" id="email"onclick="autoemail(this)"/>
-            <td th:text="${emails.url}" id="url" onclick="autourl(this)"/>
+            <td th:text="${emails.email}" id="email"onmouseover="autoemail(this)"/>
+            <td th:text="${emails.url}" id="url" onmouseover="autourl(this)"/>
         </tr>
     </table>
 

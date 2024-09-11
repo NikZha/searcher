@@ -13,10 +13,10 @@ function autoemail(td) {
         }
         email = "";
         for (let i = 0; i < array.length; i++) {
-            array[i] = "<p><a href=\"mailto:" + array[i] + "\">" + array[i] + "<\/a><\/p>";
+            array[i] = "<p><a href=\"mailto:" + array[i] + "?subject=Заявка" + "\">" + array[i] + "<\/a><\/p>";
             email += (array[i] + ' ');
         }
-       
+
         td.innerHTML = email;
     }
 }
